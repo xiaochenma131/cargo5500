@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { ButtonGroup, Button, Navbar, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ export default function Header() {
 
     const navigate = useNavigate();
 
-    useEffect(function() {
+    useEffect(function () {
         Axios.get('/api/user/isLoggedIn')
             .then(response => setUsername(response.data.username))
             .catch(error => console.log("User is not logged in"));
@@ -18,18 +18,18 @@ export default function Header() {
 
     function logout() {
         Axios.post('/api/user/logout')
-        .then(response => {
-            setUsername(null);
-            navigate('/');
-        })
-        .catch(error => console.log("Error logging out"));
+            .then(response => {
+                setUsername(null);
+                navigate('/');
+            })
+            .catch(error => console.log("Error logging out"));
     }
 
     if (!username) {
         return (
             <Navbar sticky="top" expand="sm" bg="myNav">
                 <Navbar.Brand as={Link} to="/">
-                    Articles
+                    CarGoApp
                 </Navbar.Brand>
                 <ButtonGroup>
                     <Button size="sm" className="custom-btn" variant='secondary' as={Link} to='/login'>Login</Button>
@@ -49,7 +49,7 @@ export default function Header() {
                     <Button size="sm" className="custom-btn" as={Link} to="/createArticle">Create Article</Button>{' '}
                     <Button size="sm" variant='secondary' onClick={() => logout()}>Logout</Button>
                 </Form>
-            </Navbar>  
+            </Navbar>
         )
     }
 }

@@ -20,7 +20,9 @@ a > Button{
 }
 
 .bg-myNav {
-  background-color: #E8CEBF;
+  background-color: #F0F8FF;
+  font-weight: bold;
+  margin-bottom: 5%;
 }
 
 .custom-btn {
@@ -38,6 +40,17 @@ a > Button{
 
 .review-btn {
   margin-left: 5%;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-form-button {
+  margin-top: 2%;
+  position: relative;
+  max-width: 100px;
 }
 
 span {
