@@ -1,12 +1,9 @@
 const Schema = require('mongoose').Schema;
 
 const carSchema = new Schema({
-    username: String,
-    title: {
-        required: true,
-        type: String
-    },
+    Username: String,
     Vin: {
+        require: true,
         type: String
     },
     Year: {
