@@ -17,13 +17,13 @@ const UserSchema = new Schema({
         type: String,
     },
     DOB: {
-        type: String,
+        type: Date,
     },
     Zip: {
         type: Number,
     },
     Phone: {
-        type: Number
+        type: String
     },
 }, {
     collection: 'users',
