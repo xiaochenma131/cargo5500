@@ -1,11 +1,30 @@
 const Schema = require('mongoose').Schema;
 
 const UserSchema = new Schema({
-    username: {
+    FirstName: {
         type: String,
         unique: true,
     },
-    password: String,
+    LastName: {
+        type: String,
+        unique: true,
+    },
+    Email: {
+        type: String,
+        unique: true,
+    },
+    PassWord: {
+        type: String,
+    },
+    DOB: {
+        type: String,
+    },
+    Zip: {
+        type: Number,
+    },
+    Phone: {
+        type: Number
+    },
 }, {
     collection: 'users',
 })
