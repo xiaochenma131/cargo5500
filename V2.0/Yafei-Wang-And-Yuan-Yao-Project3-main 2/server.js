@@ -8,7 +8,7 @@ const app = express();
 const articleRouter = require('./routes/articles');
 const userRouter = require('./routes/user');
 
-mongoose.connect("mongodb+srv://test:test@cluster0.d8re6.mongodb.net/", {
+mongoose.connect("mongodb+srv://CarGoAdmin:CS5500Hello!@cs5500-cargo.bwrdl.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true, 
   useUnifiedTopology: true,
 })
