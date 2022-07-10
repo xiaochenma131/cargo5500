@@ -9,6 +9,12 @@ Form {
   margin-bottom: 10px;
 }
 
+.car-card {
+  margin: 10%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
 a > Button{
   margin-left: 5%;
 }
