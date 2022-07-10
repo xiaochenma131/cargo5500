@@ -28,7 +28,7 @@ function updateReviewByReviewId(review, newReview) {
     return ReviewModel.findOneAndUpdate(
         review,
         newReview,
-        {new: true}
+        { new: true }
     );
 }
 

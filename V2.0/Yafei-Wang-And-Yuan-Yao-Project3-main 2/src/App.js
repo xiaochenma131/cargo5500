@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import "./App.css";
-import ArticleCards from "./components/ArticleCards";
+import CarCards from "./components/CarCards";
 
 function App() {
-  const [articles, setArticles] = useState('');
+  const [cars, setCars] = useState('');
 
-  function getArticles() {
-    Axios.get("/api/articles")
-    .then(function(response) {
-      setArticles(response.data);
-    })
+  function getCars() {
+    Axios.get("/api/cars")
+      .then(function (response) {
+        setCars(response.data);
+      })
   }
 
-  useEffect(getArticles, []);
+  useEffect(getCars, []);
 
   return (
     <div>
-      <ArticleCards articles={articles} />
+      <CarCards cars={cars} />
     </div>
   );
 }

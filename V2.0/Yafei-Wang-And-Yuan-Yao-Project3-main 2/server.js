@@ -7,9 +7,10 @@ const app = express();
 
 const articleRouter = require('./routes/articles');
 const userRouter = require('./routes/user');
+const carRouter = require('./routes/cars');
 
 mongoose.connect("mongodb+srv://CarGoAdmin:CS5500Hello!@cs5500-cargo.bwrdl.mongodb.net/?retryWrites=true&w=majority", {
-  useNewUrlParser: true, 
+  useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api/articles', articleRouter);
+app.use('/api/cars', carRouter);
 app.use('/api/user', userRouter);
 
 const cors = require('cors');
@@ -34,6 +36,6 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(process.env.PORT || 8000, function() {
-    console.log("Starting server");
+app.listen(process.env.PORT || 8000, function () {
+  console.log("Starting server");
 })
