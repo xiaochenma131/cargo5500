@@ -4,19 +4,24 @@ const carSchema = new Schema({
     Username: String,
     Vin: {
         require: true,
-        type: String
+        type: String,
+        unique: true
     },
     Year: {
-        type: Number
+        type: Number,
+        require: true,
     },
     Make: {
-        type: String
+        type: String,
+        require: true
     },
     Model: {
-        type: String
+        type: String,
+        require: true
     },
     Trim: {
-        type: String
+        type: String,
+        require: true
     },
     Body: {
         type: String
@@ -43,10 +48,12 @@ const carSchema = new Schema({
         type: Number
     },
     SellingPrize: {
-        type: Number
+        type: Number,
+        require: true
     },
     SellerId: {
-        type: Number
+        type: Number,
+        require: true
     }
 }, {
     collection: 'car',
