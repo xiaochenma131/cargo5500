@@ -124,15 +124,20 @@ router.get('/:Email', function (request, response) {
 // });
 
 router.post('/', function (request, response) {
-    const { Email, Password } = request.body;
+    const { Email, Password, FirstName, LastName, DOB, Zip, Phone } = request.body;
 
-    if (!Email || !Password) {
-        response.status(401).send("Missing username or password argument")
+    if (!Email || !Password || !FirstName || !LastName || !DOB || !Zip || !Phone) {
+        response.status(401).send("Missing input argument")
     }
 
     const user = {
         Email,
-        Password
+        Password,
+        FirstName,
+        LastName,
+        DOB,
+        Zip,
+        Phone
     }
 
     return UserModel.createUser(user)
