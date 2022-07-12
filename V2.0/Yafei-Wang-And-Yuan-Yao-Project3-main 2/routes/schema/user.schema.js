@@ -11,7 +11,7 @@ const UserSchema = new Schema({
         type: String,
         unique: true,
     },
-    PassWord: {
+    Password: {
         type: String,
     },
     DOB: {
@@ -25,6 +25,7 @@ const UserSchema = new Schema({
     },
 }, {
     collection: 'users',
+    versionKey: false,
 })
 
 module.exports = UserSchema;

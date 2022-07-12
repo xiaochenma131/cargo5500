@@ -6,26 +6,26 @@ import { Link } from 'react-router-dom';
 
 export default function Header() {
 
-    const [username, setUsername] = useState(null);
+    const [Email, setEmail] = useState(null);
 
     const navigate = useNavigate();
 
     useEffect(function () {
         Axios.get('/api/user/isLoggedIn')
-            .then(response => setUsername(response.data.username))
+            .then(response => setEmail(response.data.Email))
             .catch(error => console.log("User is not logged in"));
     })
 
     function logout() {
         Axios.post('/api/user/logout')
             .then(response => {
-                setUsername(null);
+                setEmail(null);
                 navigate('/');
             })
             .catch(error => console.log("Error logging out"));
     }
 
-    if (!username) {
+    if (!Email) {
         return (
             <Navbar sticky="top" expand="sm" bg="myNav">
                 <Navbar.Brand as={Link} to="/">
@@ -42,10 +42,10 @@ export default function Header() {
         return (
             <Navbar sticky="top" expand="sm" bg="myNav" variant='light' className='mb-3'>
                 <Navbar.Brand as={Link} to="/">
-                    Articles
+                    CarGoApp
                 </Navbar.Brand>
                 <Form inline className='mx-3'>
-                    <span>{username}  </span>
+                    <span>{Email}  </span>
                     <Button size="sm" className="custom-btn" as={Link} to="/createArticle">Create Article</Button>{' '}
                     <Button size="sm" variant='secondary' onClick={() => logout()}>Logout</Button>
                 </Form>

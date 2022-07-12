@@ -6,19 +6,38 @@ const auth_middleware = require('./middleware/auth_middleware');
 const router = express.Router();
 
 router.post('/authenticate', function (request, response) {
-    const { username, password } = request.body;
+    // const { username, password } = request.body;
 
-    return UserModel.getUserByUserName(username)
+    // return UserModel.getUserByUserName(username)
+    //     .then(user => {
+    //         if (user.password === password) {
+    //             const payload = {
+    //                 username: username,
+    //             };
+    //             const token = jwt.sign(payload, "SUPER_SECRET", {
+    //                 expiresIn: '14d'
+    //             });
+    //             return response.cookie('token', token, { httpOnly: true })
+    //                 .status(200).send({ username });
+    //         }
+
+    //         return response.status(401).send("Invalid password");
+    //     })
+    //     .catch(error => {
+    //         response.status(400).send("There was an error");
+    //     })
+    const { Email, Password } = request.body;
+    return UserModel.getUserByEmail(Email)
         .then(user => {
-            if (user.password === password) {
+            if (user.Password === Password) {
                 const payload = {
-                    username: username,
+                    Email: Email,
                 };
                 const token = jwt.sign(payload, "SUPER_SECRET", {
                     expiresIn: '14d'
                 });
                 return response.cookie('token', token, { httpOnly: true })
-                    .status(200).send({ username });
+                    .status(200).send({ Email });
             }
 
             return response.status(401).send("Invalid password");
@@ -26,6 +45,7 @@ router.post('/authenticate', function (request, response) {
         .catch(error => {
             response.status(400).send("There was an error");
         })
+
 })
 
 router.post('/logout', auth_middleware, function (request, response) {
@@ -36,15 +56,32 @@ router.post('/logout', auth_middleware, function (request, response) {
         .status(200).send();
 })
 
+// router.get('/isLoggedIn', auth_middleware, function (request, response) {
+//     return response.status(200).send({ username: request.username });
+// })
+
 router.get('/isLoggedIn', auth_middleware, function (request, response) {
-    return response.status(200).send({ username: request.username });
+    return response.status(200).send({ Email: request.Email });
 })
 
-router.get('/:username', function (request, response) {
+// router.get('/:username', function (request, response) {
 
-    const username = request.params.username
+//     const username = request.params.username
 
-    return UserModel.getUserByUserName(username)
+//     return UserModel.getUserByUserName(username)
+//         .then(user => {
+//             response.status(200).send(user);
+//         })
+//         .catch(error => {
+//             response.status(400).send(error);
+//         })
+// })
+
+router.get('/:Email', function (request, response) {
+
+    const Email = request.params.Email
+
+    return UserModel.getUserByEmail(Email)
         .then(user => {
             response.status(200).send(user);
         })
@@ -53,30 +90,63 @@ router.get('/:username', function (request, response) {
         })
 })
 
-router.post('/', function (request, response) {
-    const { username, password } = request.body;
+// router.post('/', function (request, response) {
+//     const { username, password } = request.body;
 
-    if (!username || !password) {
+//     if (!username || !password) {
+//         response.status(401).send("Missing username or password argument")
+//     }
+
+//     const user = {
+//         username,
+//         password
+//     }
+
+//     return UserModel.createUser(user)
+//         .then(dbResponse => {
+
+//             if (dbResponse.password === password) {
+//                 const payload = {
+//                     username: username,
+//                 };
+//                 const token = jwt.sign(payload, "SUPER_SECRET", {
+//                     expiresIn: '14d'
+//                 });
+//                 return response.cookie('token', token, { httpOnly: true })
+//                     .status(200).send({ username });
+//             }
+
+//             return response.status(401).send("Invalid password");
+//         })
+//         .catch(error => {
+//             response.status(400).send(error)
+//         })
+// });
+
+router.post('/', function (request, response) {
+    const { Email, Password } = request.body;
+
+    if (!Email || !Password) {
         response.status(401).send("Missing username or password argument")
     }
 
     const user = {
-        username,
-        password
+        Email,
+        Password
     }
 
     return UserModel.createUser(user)
         .then(dbResponse => {
 
-            if (dbResponse.password === password) {
+            if (dbResponse.Password === Password) {
                 const payload = {
-                    username: username,
+                    Email: Email,
                 };
                 const token = jwt.sign(payload, "SUPER_SECRET", {
                     expiresIn: '14d'
                 });
                 return response.cookie('token', token, { httpOnly: true })
-                    .status(200).send({ username });
+                    .status(200).send({ Email });
             }
 
             return response.status(401).send("Invalid password");

@@ -8,11 +8,16 @@ function createUser(user) {
     return UserModel.create(user);
 }
 
-function getUserByUserName(username) {
-    return UserModel.findOne({ username: username }).exec();
+// function getUserByUserName(username) {
+//     return UserModel.findOne({ username: username }).exec();
+// }
+
+function getUserByEmail(Email) {
+    return UserModel.findOne({ Email: Email }).exec();
 }
 
 module.exports = {
     createUser,
-    getUserByUserName,
+    // getUserByUserName,
+    getUserByEmail,
 }
