@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
+import { Card, Button } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 export default function SearchForm(props) {
     const navigate = useNavigate();
@@ -12,17 +14,18 @@ export default function SearchForm(props) {
     // const [State, setState] = useState('');
 
     function searchCars() {
-        Axios.get('/api/cars/' + params.year)
-            .then(response => {
-                navigate('/');
-            })
-            .catch(error => console.log(error));
-        // Axios.get('/api/cars/', { params: { Year: Year } }).catch(error => console.log(error));
+        console.log('*****Search is running*****');
+        // Axios.get('/api/cars/search' + params.year)
+        //     .then(response => {
+        //         navigate('/search');
+        //     })
+        //     .catch(error => console.log(error));
+        Axios.get('/api/cars/search', { params: { Year: Year } }).catch(error => console.log(error));
     }
 
     return (
         <div>
-            <form className="search-form">
+            <form className="search-form" onSubmit={() => searchCars()}>
                 <label>
                     Year:{' '}
                     <input type="text" name="Year" value={Year} onChange={e => setYear(e.target.value)} />
@@ -39,8 +42,12 @@ export default function SearchForm(props) {
                     State:{' '}
                     <input type="text" name="State" value={State} onChange={e => setState(e.target.value)} />
                 </label> */}
-                <input class="search-form-button" type="submit" value="Search" onClick={() => searchCars()} />
+                {/* <Button size="lg" className="search-form-button" type="submit" onClick={() => searchCars()} >
+                    Submit
+                </Button> */}
+                <input type="submit" value = "test"></input>
             </form>
+            
         </div>
     )
 }

@@ -43,14 +43,28 @@ const router = express.Router()
 // });
 
 router.get('/', function (request, response) {
+    console.log("*****Cars is running*****");
+    return CarModel.getAllCars()
+        .then(allCars => {
+            console.log("*****All cars is showing*****");
+            response.status(200).send(allCars);
+        })
+        .catch(err => {
+            response.status(400).send(err)
+        })
+});
+
+router.get('/search', function (request, response) {
 
     // const make = request.params.Make;
     // const model = request.params.Model;
     // const state = request.params.State;
-    const Year = request.params.Year;
-    console.log("Year is: " + Year);
-    return CarModel.getCarsByYear(2017)
+    // const Year = request.params.Year;
+    // console.log("Year is: " + Year);
+    console.log("*****Search Cars is running*****");
+    return CarModel.getAllCars()
         .then(filteredCars => {
+            console.log("*****All cars is showing*****");
             response.status(200).send(filteredCars);
         })
         .catch(err => {

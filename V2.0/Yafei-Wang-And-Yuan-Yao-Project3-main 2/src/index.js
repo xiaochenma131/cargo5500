@@ -13,6 +13,7 @@ import CreateUser from './components/CreateUser';
 import CreateArticle from './components/CreateArticle';
 import ReviewEdit from './components/ReviewEdit';
 import ReviewEntry from './components/ReviewEntry';
+import SearchForm from './components/SearchForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,9 @@ root.render(
       <Header />
       <Routes>
         <Route path={"/"} element={<App />} />
+        <Route path={"/search"} element={<SearchForm />} />
+
+
         <Route path={"/articles/:articleId"} element={<ArticleEntry />} />
         <Route path={"/articles/edit/:articleId"} element={<ArticleEdit />} />
         <Route path={"/login"} element={<Login />} />
