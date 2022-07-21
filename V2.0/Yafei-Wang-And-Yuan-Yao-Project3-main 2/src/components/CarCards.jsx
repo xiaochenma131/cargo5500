@@ -15,7 +15,6 @@ export default function CarCards(props) {
 
     return (
         <div>
-            <SearchForm />
             {carComponent}
         </div>
     )

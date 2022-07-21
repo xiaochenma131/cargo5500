@@ -18,15 +18,26 @@ const router = express.Router()
 //         })
 // });
 
-// router.get('/', function (request, response) {
-//     return CarModel.getAllCars()
-//         .then(allCars => {
-//             response.status(200).send(allCars);
-//         })
-//         .catch(err => {
-//             response.status(400).send(err)
-//         })
-// });
+router.get('/', function (request, response) {
+    return CarModel.getAllCars()
+        .then(allCars => {
+            response.status(200).send(allCars);
+        })
+        .catch(err => {
+            response.status(400).send(err)
+        })
+});
+
+router.get('/search/:Year', function (request, response) {
+    // console.log("Year is: " + request.params.Year);
+    return CarModel.getCarsByYear(2017)
+        .then(allCars => {
+            response.status(200).send(allCars);
+        })
+        .catch(err => {
+            response.status(400).send(err)
+        })
+});
 
 // router.get('/', function (request, response) {
 //     const year = request.params.Year;
@@ -42,21 +53,21 @@ const router = express.Router()
 //         })
 // });
 
-router.get('/', function (request, response) {
+// router.get('/', function (request, response) {
 
-    // const make = request.params.Make;
-    // const model = request.params.Model;
-    // const state = request.params.State;
-    const Year = request.params.Year;
-    console.log("Year is: " + Year);
-    return CarModel.getCarsByYear(2017)
-        .then(filteredCars => {
-            response.status(200).send(filteredCars);
-        })
-        .catch(err => {
-            response.status(400).send(err)
-        })
-});
+//     // const make = request.params.Make;
+//     // const model = request.params.Model;
+//     // const state = request.params.State;
+//     const Year = request.params.Year;
+//     console.log("Year is: " + Year);
+//     return CarModel.getCarsByYear(2017)
+//         .then(filteredCars => {
+//             response.status(200).send(filteredCars);
+//         })
+//         .catch(err => {
+//             response.status(400).send(err)
+//         })
+// });
 // router.get('/', auth_middleware, function (request, response) {
 //     const username = request.username;
 

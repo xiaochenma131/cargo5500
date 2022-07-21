@@ -1,25 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import { useNavigate } from 'react-router';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import CarCards from "./CarCards";
+
 
 export default function SearchForm(props) {
-    const navigate = useNavigate();
     const [Year, setYear] = useState('');
-    const params = useParams();
-    // const [Make, setMake] = useState('');
-    // const [Model, setModel] = useState('');
-    // const [State, setState] = useState('');
+    // const params = useParams();
+    // // const [Make, setMake] = useState('');
+    // // const [Model, setModel] = useState('');
+    // // const [State, setState] = useState('');
 
-    function searchCars() {
-        Axios.get('/api/cars/' + params.year)
-            .then(response => {
-                navigate('/');
+    // function searchCars() {
+    //     Axios.get('/api/cars/' + params.year)
+    //         .then(response => {
+    //             console.log(response);
+    //         })
+    //         .catch(error => console.log(error));
+    //     // Axios.get('/api/cars/', { params: { Year: Year } }).catch(error => console.log(error));
+    // }
+    const params = useParams();
+    const [cars, setCars] = useState('');
+
+    function getCars() {
+        Axios.get("/api/cars/search" + params.Year)
+            .then(function (response) {
+                setCars(response.data);
             })
-            .catch(error => console.log(error));
-        // Axios.get('/api/cars/', { params: { Year: Year } }).catch(error => console.log(error));
     }
 
+    useEffect(getCars, []);
     return (
         <div>
             <form className="search-form">
@@ -39,8 +49,10 @@ export default function SearchForm(props) {
                     State:{' '}
                     <input type="text" name="State" value={State} onChange={e => setState(e.target.value)} />
                 </label> */}
-                <input class="search-form-button" type="submit" value="Search" onClick={() => searchCars()} />
+                <input class="search-form-button" type="submit" value="Search" as={Link} to="/search" onClick={() => getCars()} />
+                {/* <input class="search-form-button" type="submit" value="Search" /> */}
             </form>
+            <CarCards cars={cars} />
         </div>
     )
 }

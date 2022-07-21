@@ -34,6 +34,7 @@ export default function Header() {
                 <ButtonGroup>
                     <Button size="sm" className="custom-btn" variant='secondary' as={Link} to='/login'>Login</Button>
                     <Button size="sm" className="custom-btn" variant='secondary' as={Link} to='/createUser'>Sign Up</Button>
+                    <Button size="sm" className="custom-btn" variant='secondary' as={Link} to='/search'>Search</Button>
                 </ButtonGroup>
 
             </Navbar>
@@ -48,6 +49,7 @@ export default function Header() {
                     <span>{Email}  </span>
                     <Button size="sm" className="custom-btn" as={Link} to="/createArticle">Create Article</Button>{' '}
                     <Button size="sm" variant='secondary' onClick={() => logout()}>Logout</Button>
+                    <Button size="sm" className="custom-btn" as={Link} to='/search'>Search</Button>
                 </Form>
             </Navbar>
         )
