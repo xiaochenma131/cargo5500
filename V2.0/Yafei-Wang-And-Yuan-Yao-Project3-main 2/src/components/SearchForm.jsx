@@ -32,7 +32,7 @@ export default function SearchForm(props) {
     useEffect(getCars, []);
     return (
         <div>
-            <form className="search-form">
+            <form className="search-form" onSubmit={() => searchCars()}>
                 <label>
                     Year:{' '}
                     <input type="text" name="Year" value={Year} onChange={e => setYear(e.target.value)} />
@@ -51,8 +51,8 @@ export default function SearchForm(props) {
                 </label> */}
                 <input class="search-form-button" type="submit" value="Search" as={Link} to="/search" onClick={() => getCars()} />
                 {/* <input class="search-form-button" type="submit" value="Search" /> */}
-            </form>
+            </form >
             <CarCards cars={cars} />
-        </div>
+        </div >
     )
 }
