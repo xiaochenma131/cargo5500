@@ -25,7 +25,6 @@ function App() {
 
   return (
     <div>
-      {cars.length}
       <CarCards cars={cars} />
     </div>
   );

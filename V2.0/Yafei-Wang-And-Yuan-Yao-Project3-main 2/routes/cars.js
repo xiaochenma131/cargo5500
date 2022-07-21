@@ -28,9 +28,13 @@ router.get('/', function (request, response) {
         })
 });
 
-router.get('/search/:Year', function (request, response) {
+router.post('/search', function (request, response) {
     // console.log("Year is: " + request.params.Year);
-    return CarModel.getCarsByYear(2017)
+    // const queryParams = new URLSearchParams("?Year=2017");
+    // const year = queryParams.get("Year");
+    const Year = request.body.Year;
+    console.log("Year is: " + Year);
+    return CarModel.getCarsByYear(Year)
         .then(allCars => {
             response.status(200).send(allCars);
         })

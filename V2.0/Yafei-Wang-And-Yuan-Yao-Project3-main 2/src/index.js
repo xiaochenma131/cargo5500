@@ -22,9 +22,6 @@ root.render(
       <Header />
       <Routes>
         <Route path={"/"} element={<App />} />
-        <Route path={"/search"} element={<SearchForm />} />
-
-
         <Route path={"/articles/:articleId"} element={<ArticleEntry />} />
         <Route path={"/articles/edit/:articleId"} element={<ArticleEdit />} />
         <Route path={"/login"} element={<Login />} />
@@ -32,6 +29,7 @@ root.render(
         <Route path={"/createArticle"} element={<CreateArticle />} />
         <Route path={"/articles/:articleId/reviews/:reviewId"} element={<ReviewEntry />} />
         <Route path={"/articles/:articleId/edit/:reviewId"} element={<ReviewEdit />} />
+        <Route path={"/search?Year=:Year"} element={<SearchForm />} />
         <Route path={"/search"} element={<SearchForm />} />
       </Routes>
     </BrowserRouter>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import CarCards from "./CarCards";
+import { Card, Button } from "react-bootstrap";
 
 
 export default function SearchForm(props) {
@@ -23,21 +24,22 @@ export default function SearchForm(props) {
     const [cars, setCars] = useState('');
 
     function getCars() {
-        Axios.get("/api/cars/search" + params.Year)
+        Axios.post("/api/cars/search", { Year })
             .then(function (response) {
                 setCars(response.data);
+                console.log("response is: " + JSON.stringify(response));
             })
     }
 
     useEffect(getCars, []);
     return (
         <div>
-            <form className="search-form" onSubmit={() => searchCars()}>
+            {/* <form className="search-form">
                 <label>
                     Year:{' '}
                     <input type="text" name="Year" value={Year} onChange={e => setYear(e.target.value)} />
-                </label>
-                {/* <label>
+                </label> */}
+            {/* <label>
                     Make:{' '}
                     <input type="text" name="Make" value={Make} onChange={e => setMake(e.target.value)} />
                 </label>
@@ -49,9 +51,20 @@ export default function SearchForm(props) {
                     State:{' '}
                     <input type="text" name="State" value={State} onChange={e => setState(e.target.value)} />
                 </label> */}
-                <input class="search-form-button" type="submit" value="Search" as={Link} to="/search" onClick={() => getCars()} />
-                {/* <input class="search-form-button" type="submit" value="Search" /> */}
-            </form >
+            {/* <input class="search-form-button" type="submit" value="Search" onClick={getCars()} /> */}
+            {/* <input class="search-form-button" type="submit" value="Search" /> */}
+            {/* <button class="search-form-button" type="submit" onClick={() => getCars()}>Search</button>
+            </form > */}
+            <Card className='w-auto'>
+                <Card.Header>Search Cars</Card.Header>
+                <Card.Body>
+                    <h5>Year</h5>
+                    <input value={Year} onChange={e => setYear(e.target.value)} />
+                </Card.Body>
+            </Card>
+            <Button size="lg" className="custom-btn mt-3" onClick={() => getCars()} >
+                Search
+            </Button>
             <CarCards cars={cars} />
         </div >
     )
