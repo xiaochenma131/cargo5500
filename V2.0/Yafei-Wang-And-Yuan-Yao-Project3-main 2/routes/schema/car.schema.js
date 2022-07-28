@@ -44,10 +44,7 @@ const carSchema = new Schema({
     Interior: {
         type: String
     },
-    Mmr: {
-        type: Number
-    },
-    SellingPrize: {
+    SellingPrice: {
         type: Number,
         require: true
     },
@@ -57,6 +54,7 @@ const carSchema = new Schema({
     }
 }, {
     collection: 'car',
+    versionKey: false,
 })
 
 module.exports = carSchema;

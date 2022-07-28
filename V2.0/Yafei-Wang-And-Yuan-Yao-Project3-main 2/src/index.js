@@ -10,7 +10,7 @@ import ArticleEdit from './components/ArticleEdit';
 import Login from './components/Login';
 import Header from './components/Header';
 import CreateUser from './components/CreateUser';
-import CreateArticle from './components/CreateArticle';
+import CreateCar from './components/CreateCar';
 import ReviewEdit from './components/ReviewEdit';
 import ReviewEntry from './components/ReviewEntry';
 import SearchForm from './components/SearchForm';
@@ -26,7 +26,7 @@ root.render(
         <Route path={"/articles/edit/:articleId"} element={<ArticleEdit />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/createUser"} element={<CreateUser />} />
-        <Route path={"/createArticle"} element={<CreateArticle />} />
+        <Route path={"/createCar"} element={<CreateCar />} />
         <Route path={"/articles/:articleId/reviews/:reviewId"} element={<ReviewEntry />} />
         <Route path={"/articles/:articleId/edit/:reviewId"} element={<ReviewEdit />} />
         <Route path={"/search?Year=:Year"} element={<SearchForm />} />

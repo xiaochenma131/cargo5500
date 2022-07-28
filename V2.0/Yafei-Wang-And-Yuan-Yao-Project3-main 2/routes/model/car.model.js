@@ -106,7 +106,6 @@ function getCarsByYear(year) {
 }
 
 module.exports = {
-
     createCar,
     getAllCars,
     deleteCar,
