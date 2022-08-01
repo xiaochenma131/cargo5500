@@ -49,7 +49,7 @@ const carSchema = new Schema({
         require: true
     },
     SellerId: {
-        type: Number,
+        type: String,
         require: true
     }
 }, {
