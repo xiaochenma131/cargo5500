@@ -105,10 +105,15 @@ function getCarsByYear(year) {
     }).exec();
 }
 
+function getCarById(CarId) {
+    return CarModel.findById(CarId).exec();
+}
+
 module.exports = {
     createCar,
     getAllCars,
     deleteCar,
     getCarsByFilter,
     getCarsByYear,
+    getCarById
 }

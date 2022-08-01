@@ -14,6 +14,7 @@ import CreateCar from './components/CreateCar';
 import ReviewEdit from './components/ReviewEdit';
 import ReviewEntry from './components/ReviewEntry';
 import SearchForm from './components/SearchForm';
+import CarDetailPage from './components/CarDetailPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -31,6 +32,7 @@ root.render(
         <Route path={"/articles/:articleId/edit/:reviewId"} element={<ReviewEdit />} />
         <Route path={"/search?Year=:Year"} element={<SearchForm />} />
         <Route path={"/search"} element={<SearchForm />} />
+        <Route path={"/cars/:CarId"} element={<CarDetailPage />} />
       </Routes>
     </BrowserRouter>
   </div>
