@@ -14,6 +14,8 @@ import CreateCar from './components/CreateCar';
 import ReviewEdit from './components/ReviewEdit';
 import ReviewEntry from './components/ReviewEntry';
 import SearchForm from './components/SearchForm';
+import UserProfile from './components/UserProfile';
+import UserProfileEdit from './components/UserProfileEdit';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,6 +28,8 @@ root.render(
         <Route path={"/articles/edit/:articleId"} element={<ArticleEdit />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/createUser"} element={<CreateUser />} />
+        <Route path={"/profile"} element={<UserProfile />} />
+        <Route path={"/profileEdit"} element={<UserProfileEdit />} />
         <Route path={"/createCar"} element={<CreateCar />} />
         <Route path={"/articles/:articleId/reviews/:reviewId"} element={<ReviewEntry />} />
         <Route path={"/articles/:articleId/edit/:reviewId"} element={<ReviewEdit />} />
