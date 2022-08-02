@@ -17,6 +17,17 @@ router.get('/', function (request, response) {
         })
 });
 
+router.get('/:CarId', function (request, response) {
+    const carId = request.params.CarId;
+    return CarModel.getCarById(carId)
+        .then(car => {
+            response.status(200).send(car);
+        })
+        .catch(err => {
+            response.status(400).send(err)
+        })
+});
+
 // router.post('/search', function (request, response) {
 //     // console.log("Year is: " + request.params.Year);
 //     // const queryParams = new URLSearchParams("?Year=2017");

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 export default function CarCard(props) {
     const car = props.car;
@@ -13,6 +13,11 @@ export default function CarCard(props) {
                     <Card.Text>${' '}{(car.SellingPrice)}</Card.Text>
                     <Card.Text>{car.Odometer} {' '}Miles</Card.Text>
                     <Card.Text>Color: {car.Color} | Interior: {car.Interior} | State: {car.State}</Card.Text>
+                    <a href={"/cars/" + car._id}>
+                        <Button size="sm" className="custom-btn">
+                            View the Car
+                        </Button>
+                    </a>
                 </Card.Body>
             </Card>
         </div>
