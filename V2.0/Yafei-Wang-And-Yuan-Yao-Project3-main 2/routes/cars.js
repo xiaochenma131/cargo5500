@@ -156,6 +156,29 @@ router.post('/', auth_middleware, function (request, response) {
         })
 });
 
+// send or create a message
+router.post('/:CarId/reviews', auth_middleware, function (request, response) {
+    const CarId = request.params.CarId;
+    const ToId = request.body.ToId;
+    const FromId = request.body.FromId;
+    const Content = request.body.Content;
+
+    const message = {
+        CarId: CarId,
+        ToId: ToId,
+        FromId: FromId,
+        Content: Content,
+    }
+
+    return MessageModel.createMessage(message)
+        .then(dbResponse => {
+            response.status(200).send(dbResponse)
+        })
+        .catch(err => {
+            response.send(400).send(err)
+        })
+});
+
 // router.post('/', auth_middleware, function (request, response) {
 //     const username = request.username;
 //     const title = request.body.title;

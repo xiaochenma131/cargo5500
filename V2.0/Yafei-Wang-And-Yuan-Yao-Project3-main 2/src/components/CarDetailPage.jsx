@@ -1,12 +1,27 @@
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Form } from "react-bootstrap";
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 export default function CarDetailPage() {
-    // const car = props.car;
     const [car, setCar] = useState(undefined);
+    const [newMessageInput, setNewMessageInput] = useState('');
     const params = useParams();
+
+    function sendNewMessage() {
+        if (!newMessageInput) return;
+
+        Axios.post('/api/cars/' + params.CarId + '/message', {
+            Content: newMessageInput
+        })
+            .then(response => {
+                // navigate('/cars/' + response.data._id)
+                setNewMessageInput('');
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    }
 
     useEffect(() => {
         Axios.get('/api/cars/' + params.CarId)
@@ -25,23 +40,35 @@ export default function CarDetailPage() {
             </div>)
     } else {
         return (
-            <div className="car-card">
-                <Card className='w-auto'>
-                    <Card.Header>
-                        <span color="blue">{car.Make} - {car.Model} - {car.Year} | Price: ${car.SellingPrice}</span></Card.Header>
-                    <Card.Body>
-                        <Card.Text>Vin: {car.Vin} {' '}</Card.Text>
-                        <Card.Text>Trim: {car.Trim} {' '}</Card.Text>
-                        <Card.Text>Body: {car.Body} {' '}</Card.Text>
-                        <Card.Text>Transmission: {car.Transmission} {' '}</Card.Text>
-                        <Card.Text>Odometer: {car.Odometer} Miles{' '}</Card.Text>
-                        <Card.Text>CarCondition: {car.CarCondition} (1 - 10){' '}</Card.Text>
-                        <Card.Text>Color: {car.Color} | Interior: {car.Interior} </Card.Text>
-                        <Card.Text>State: {car.State}</Card.Text>
-                    </Card.Body>
-                </Card>
+            <div>
+                <div className="car-card">
+                    <Card className='w-auto'>
+                        <Card.Header>
+                            <span color="blue">{car.Make} - {car.Model} - {car.Year} | Price: ${car.SellingPrice}</span></Card.Header>
+                        <Card.Body>
+                            <Card.Text>Vin: {car.Vin} {' '}</Card.Text>
+                            <Card.Text>Trim: {car.Trim} {' '}</Card.Text>
+                            <Card.Text>Body: {car.Body} {' '}</Card.Text>
+                            <Card.Text>Transmission: {car.Transmission} {' '}</Card.Text>
+                            <Card.Text>Odometer: {car.Odometer} Miles{' '}</Card.Text>
+                            <Card.Text>CarCondition: {car.CarCondition} (1 - 10){' '}</Card.Text>
+                            <Card.Text>Color: {car.Color} | Interior: {car.Interior} </Card.Text>
+                            <Card.Text>State: {car.State}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </div>
+                <div className="car-card">
+                    <Form.Group className="mb-3">
+                        <Form.Label>Enter your message</Form.Label>
+                            <Form.Control placeholder="Enter the message"
+                                        value={newMessageInput}
+                                        onChange={e => setNewMessageInput(e.target.value)} />
+                    </Form.Group>
+                    <Button size="sm" className="custom-btn" onClick={sendNewMessage} as={Link} to={'/'} >
+                        Send
+                    </Button>
+                </div>
             </div>
         )
-
     }
 }
