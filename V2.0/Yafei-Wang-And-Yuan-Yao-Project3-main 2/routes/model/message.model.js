@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const messageSchema = require('../schema/review.schema');
+const messageSchema = require('../schema/message.schema');
 
-const messageModel = mongoose.model("Message", messageSchema);
+const messageModel = mongoose.model.message || mongoose.model("Message", messageSchema);
 
 function createMessage(message) {
     return messageModel.create(message);
@@ -12,6 +12,10 @@ function getMessageByEmail(Email) {
     return messageModel.find({
         Email: Email
     }).exec();
+}
+
+function getAllMessages() {
+    return messageModel.find().exec();
 }
 
 // function getReviewByReviewId(reviewId) {
@@ -36,4 +40,5 @@ function getMessageByEmail(Email) {
 module.exports = {
     createMessage,
     getMessageByEmail,
+    getAllMessages,
 }

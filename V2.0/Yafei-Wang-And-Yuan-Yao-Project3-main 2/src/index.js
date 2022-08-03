@@ -17,6 +17,7 @@ import SearchForm from './components/SearchForm';
 import UserProfile from './components/UserProfile';
 import UserProfileEdit from './components/UserProfileEdit';
 import CarDetailPage from './components/CarDetailPage';
+import MyMessagesPage from './components/MyMessagesPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -37,6 +38,7 @@ root.render(
         <Route path={"/search?Year=:Year"} element={<SearchForm />} />
         <Route path={"/search"} element={<SearchForm />} />
         <Route path={"/cars/:CarId"} element={<CarDetailPage />} />
+        <Route path={"/myMessages"} element={<MyMessagesPage />} />
       </Routes>
     </BrowserRouter>
   </div>
