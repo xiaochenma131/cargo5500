@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.post('/myMessages', function (request, response) {
     const email = request.body.email;
-    return MessageModel.getMessageByFromId(email)
+    return MessageModel.getMessageByToId(email)
         .then(allMessages => {
             response.status(200).send(allMessages);
         })

@@ -8,9 +8,9 @@ function createMessage(message) {
     return messageModel.create(message);
 }
 
-function getMessageByFromId(FromId) {
+function getMessageByToId(ToId) {
     return messageModel.find({
-        FromId: FromId,
+        ToId: ToId,
     }).exec();
 }
 
@@ -39,6 +39,6 @@ function getAllMessages() {
 
 module.exports = {
     createMessage,
-    getMessageByFromId,
+    getMessageByToId,
     getAllMessages,
 }
