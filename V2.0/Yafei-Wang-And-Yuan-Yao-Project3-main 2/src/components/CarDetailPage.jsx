@@ -6,29 +6,54 @@ import { useParams, Link } from 'react-router-dom';
 export default function CarDetailPage() {
     const [car, setCar] = useState(undefined);
     const [newMessageInput, setNewMessageInput] = useState('');
+    const [newFromId, setFromId] = useState('');
+    const [newToId, setToId] = useState('');
+    const [newVin, setVin] = useState('');
     const params = useParams();
 
     function sendNewMessage() {
-        if (!newMessageInput) return;
-
+        // if (!newMessageInput) return;
+        // setToId(car.SellerId);
         Axios.post('/api/cars/' + params.CarId + '/message', {
-            Content: newMessageInput
+            Content: newMessageInput,
+            FromId: newFromId,
+            ToId: newToId,
+            CarID: newVin
         })
-            .then(response => {
-                // navigate('/cars/' + response.data._id)
-                setNewMessageInput('');
-            })
-            .catch(function (err) {
-                console.log(err);
-            })
+        .then(response => {
+            // navigate('/cars/' + response.data._id)
+            setNewMessageInput('');
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
     }
 
-    useEffect(() => {
+    function checkLogInUser() {
+        Axios.get('/api/user/isLoggedIn')
+            .then(response => setFromId(response.data.Email))
+            .catch(error => console.log("User is not logged in"));
+    }
+
+    useEffect(checkLogInUser, [])
+
+    // useEffect(() => {
+    //     Axios.get('/api/cars/' + params.CarId)
+    //         .then(function (response) {
+    //             setCar(response.data);
+    //         });
+    // }, []);
+
+    function loadCarPage () {
         Axios.get('/api/cars/' + params.CarId)
-            .then(function (response) {
-                setCar(response.data);
-            });
-    }, []);
+        .then(function (response) {
+            setCar(response.data);
+            setToId(response.data.SellerId);
+            setVin(response.data.Vin);
+        });
+    }
+
+    useEffect(loadCarPage, [])
 
     if (!car) {
         return (
@@ -62,11 +87,13 @@ export default function CarDetailPage() {
                         <Form.Label>Enter your message</Form.Label>
                             <Form.Control placeholder="Enter the message"
                                         value={newMessageInput}
-                                        onChange={e => setNewMessageInput(e.target.value)} />
+                                        onChange={e => setNewMessageInput(e.target.value) } />
                     </Form.Group>
                     <Button size="sm" className="custom-btn" onClick={sendNewMessage} as={Link} to={'/'} >
                         Send
                     </Button>
+                    <div>
+                    </div>
                 </div>
             </div>
         )

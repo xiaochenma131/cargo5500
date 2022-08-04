@@ -3,6 +3,7 @@ const auth_middleware = require('./middleware/auth_middleware');
 
 // const ArticleModel = require('./model/article.model')
 const CarModel = require('./model/car.model')
+const MessageModel = require('./model/message.model');
 // const ReviewModel = require('./model/review.model')
 
 const router = express.Router()
@@ -157,7 +158,7 @@ router.post('/', auth_middleware, function (request, response) {
 });
 
 // send or create a message
-router.post('/:CarId/reviews', auth_middleware, function (request, response) {
+router.post('/:CarId/message', auth_middleware, function (request, response) {
     const CarId = request.params.CarId;
     const ToId = request.body.ToId;
     const FromId = request.body.FromId;

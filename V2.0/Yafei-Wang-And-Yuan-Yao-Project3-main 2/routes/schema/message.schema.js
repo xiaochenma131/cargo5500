@@ -1,9 +1,7 @@
 const Schema = require('mongoose').Schema;
 
 const messageSchema = new Schema({
-    CarId: {
-		type: Schema.Types.ObjectId,
-	},
+    CarId: String,
     FromId: String,
     ToId: String,
     Content: String,
@@ -13,6 +11,7 @@ const messageSchema = new Schema({
     },
 }, {
     collection: 'message',
+    versionKey: false,
 })
 
 module.exports = messageSchema;
