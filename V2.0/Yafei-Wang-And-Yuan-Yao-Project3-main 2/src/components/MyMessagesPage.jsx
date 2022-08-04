@@ -5,7 +5,7 @@ import MessageCards from "./MessageCards";
 
 export default function MyMessagesPage() {
     const [messages, setMessages] = useState('');
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('maggiebuaa@gmail.com');
 
     function checkLogInUser() {
         Axios.get('/api/user/isLoggedIn')
@@ -14,18 +14,16 @@ export default function MyMessagesPage() {
     }
 
     function getMessages() {
-        Axios.post("/api/messages/myMessages")
+        Axios.post("/api/messages/myMessages", { email })
             .then(function (response) {
                 setMessages(response.data);
             })
     }
-
-    useEffect(getMessages, []);
+    useEffect(checkLogInUser, [])
+    useEffect(getMessages, [checkLogInUser]);
 
     return (
         <div>
-            Hello
-            {messages.length}
             <MessageCards messages={messages} />
         </div>
     );

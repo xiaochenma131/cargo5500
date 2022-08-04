@@ -4,8 +4,8 @@ const MessageModel = require('./model/message.model')
 const router = express.Router()
 
 router.post('/myMessages', function (request, response) {
-    const email = request.body.Email;
-    return MessageModel.getMessageByEmail(email)
+    const email = request.body.email;
+    return MessageModel.getMessageByFromId(email)
         .then(allMessages => {
             response.status(200).send(allMessages);
         })

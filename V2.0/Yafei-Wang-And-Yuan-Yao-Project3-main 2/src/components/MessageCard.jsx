@@ -10,9 +10,9 @@ export default function MessageCard(props) {
                 <Card.Header>
                     <span color="blue">Message</span></Card.Header>
                 <Card.Body>
-                    <Card.Text>From: </Card.Text>
-                    <Card.Text>Send Time: </Card.Text>
-                    <Card.Text>Content: </Card.Text>
+                    <Card.Text>From: {message.FromId}</Card.Text>
+                    <Card.Text>Send Time: {message.createdAt}</Card.Text>
+                    <Card.Text>Content: {message.Content}</Card.Text>
                 </Card.Body>
             </Card>
         </div>
