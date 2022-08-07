@@ -9,20 +9,19 @@ export default function CreateCar() {
     // const [newDesInput, setNewDesInput] = useState('');
     // const [newSpecies, setNewSpecies] = useState('');
     // const [newName, setNewName] = useState('');
-    const [newVin, setNewVin] = useState('');
-    const [newYear, setNewYear] = useState('');
-    const [newMake, setNewMake] = useState('');
-    const [newModel, setNewModel] = useState('');
-    const [newTrim, setNewTrim] = useState('');
-    const [newBody, setNewBody] = useState('');
-    const [newTransmission, setNewTransmission] = useState('');
-    const [newState, setNewState] = useState('');
-    const [newOdometer, setNewOdometer] = useState('');
-    const [newCarCondition, setNewCarCondition] = useState('');
-    const [newColor, setNewColor] = useState('');
-    const [newInterior, setNewInterior] = useState('');
-    const [newSellingPrice, setNewSellingPrice] = useState('');
-    //const [username, setUsername] = useState('');
+    const [newVin, setNewVin] = useState(null);
+    const [newYear, setNewYear] = useState(null);
+    const [newMake, setNewMake] = useState(null);
+    const [newModel, setNewModel] = useState(null);
+    const [newTrim, setNewTrim] = useState(null);
+    const [newBody, setNewBody] = useState(null);
+    const [newTransmission, setNewTransmission] = useState(null);
+    const [newState, setNewState] = useState(null);
+    const [newOdometer, setNewOdometer] = useState(null);
+    const [newCarCondition, setNewCarCondition] = useState(null);
+    const [newColor, setNewColor] = useState(null);
+    const [newInterior, setNewInterior] = useState(null);
+    const [newSellingPrice, setNewSellingPrice] = useState(null);
     const [Email, setEmail] = useState(null);
     const navigate = useNavigate();
 
@@ -94,7 +93,7 @@ export default function CreateCar() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Body</Form.Label>
-                    <Form.Control placeholder="Enter the body (Optional)"
+                    <Form.Control placeholder="Enter the body"
                         value={newBody}
                         onChange={e => setNewBody(e.target.value)} />
                 </Form.Group>
@@ -140,9 +139,11 @@ export default function CreateCar() {
                         value={newSellingPrice}
                         onChange={e => setNewSellingPrice(e.target.value)} />
                 </Form.Group>
-                <Button size="sm" className="custom-btn" onClick={createNewCar} as={Link} to={'/'} >
-                    Add new Car
-                </Button>
+                {(!newVin || !newYear || !newMake || !newModel || !newTrim || !newBody || !newTransmission || !newState || !newOdometer || !newCarCondition || !newColor || !newInterior || !newSellingPrice) && <h6 style={{ color: 'red' }}>Please enter value for all fields</h6>}
+                {(newVin && newYear && newMake && newModel && newTrim && newBody && newTransmission && newState && newOdometer && newCarCondition && newColor && newInterior && newSellingPrice) &&
+                    <Button size="sm" className="custom-btn" onClick={createNewCar} as={Link} to={'/'} >
+                        Add new Car
+                    </Button>}
             </Form>
         </div>
     );
