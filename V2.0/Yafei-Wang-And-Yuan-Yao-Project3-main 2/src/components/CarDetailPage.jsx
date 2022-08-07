@@ -76,7 +76,7 @@ export default function CarDetailPage() {
                             <Card.Text>Body: {car.Body} {' '}</Card.Text>
                             <Card.Text>Transmission: {car.Transmission} {' '}</Card.Text>
                             <Card.Text>Odometer: {car.Odometer} Miles{' '}</Card.Text>
-                            <Card.Text>CarCondition: {car.CarCondition} (1 - 10){' '}</Card.Text>
+                            <Card.Text>CarCondition: {car.CarCondition} (1 - 5){' '}</Card.Text>
                             <Card.Text>Color: {car.Color} | Interior: {car.Interior} </Card.Text>
                             <Card.Text>State: {car.State}</Card.Text>
                         </Card.Body>
@@ -97,7 +97,7 @@ export default function CarDetailPage() {
                             <Card.Text>Body: {car.Body} {' '}</Card.Text>
                             <Card.Text>Transmission: {car.Transmission} {' '}</Card.Text>
                             <Card.Text>Odometer: {car.Odometer} Miles{' '}</Card.Text>
-                            <Card.Text>CarCondition: {car.CarCondition} (1 - 10){' '}</Card.Text>
+                            <Card.Text>CarCondition: {car.CarCondition} (1 - 5){' '}</Card.Text>
                             <Card.Text>Color: {car.Color} | Interior: {car.Interior} </Card.Text>
                             <Card.Text>State: {car.State}</Card.Text>
                         </Card.Body>
